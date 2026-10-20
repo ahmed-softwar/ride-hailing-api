@@ -3,6 +3,8 @@ require('dotenv').config();
 
 const express = require('express');
 const http = require('http');
+const cors = require('cors');
+const helmet = require('helmet');
 const { Server } = require('socket.io');
 
 const app = express();
@@ -24,6 +26,9 @@ const driverRoutes = require('./routes/driverRoutes');
 
 const setupSocket = require('./sockets/socket');
 
+// Security and request middleware
+app.use(helmet());
+app.use(cors());
 app.use(express.json());
 
 // Make Socket.IO available in routes and controllers
