@@ -65,8 +65,20 @@ const login = async (req, res, next) => {
             });
         }
 
+        const secret = process.env.JWT_SECRET;
+
+        if (!secret) {
+            console.error('JWT_SECRET is not configured');
+
+            return res.status(500).json({
+                message: 'Internal server error'
+            });
+        }
+
         const [users] = await pool.execute(
-            'SELECT * FROM users WHERE email = ?',
+            `SELECT id, full_name, email, password_hash, role, is_active
+            FROM users
+            WHERE email = ?`,
             [email]
         );
 
@@ -100,7 +112,7 @@ const login = async (req, res, next) => {
                 id: user.id,
                 role: user.role
             },
-            process.env.JWT_SECRET,
+            secret,
             {
                 expiresIn: '1d'
             }
