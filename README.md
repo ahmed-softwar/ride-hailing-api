@@ -40,11 +40,9 @@ A backend REST API for a ride-hailing service, built with Node.js, Express, MySQ
 ### 1. Clone the repository
 
 ```bash
-git clone <YOUR_REPOSITORY_URL>
+git clone https://github.com/ahmed-softwar/ride-hailing-api.git
 cd ride-hailing-api
 ```
-
-Replace `<YOUR_REPOSITORY_URL>` with your GitHub repository URL.
 
 ### 2. Install dependencies
 
@@ -94,9 +92,7 @@ The server uses the port configured in `.env`, which defaults to `3000`.
 
 Check the health endpoint:
 
-```http
-GET http://localhost:3000/api/health
-```
+`GET http://localhost:3000/api/health`
 
 A successful response confirms that the API is running and the database is connected.
 
